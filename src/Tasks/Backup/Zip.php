@@ -97,6 +97,7 @@ class Zip
      */
     public function add($files, string $nameInZip = null): self
     {
+        $config=config('backup');
         if (is_array($files)) {
             $nameInZip = null;
         }
@@ -112,6 +113,10 @@ class Zip
 
             if (is_file($file)) {
                 $this->zipFile->addFile($file, ltrim($nameInZip, DIRECTORY_SEPARATOR)).PHP_EOL;
+                if($config['backup']['encrypt_back']){
+                    $this->zipFile->setEncryptionName(ltrim($nameInZip, DIRECTORY_SEPARATOR), ZipArchive::EM_AES_256,$config['backup']['backup_password']);
+                }
+
             }
             $this->fileCount++;
         }
