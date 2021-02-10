@@ -47,7 +47,16 @@ return [
                  * Example: base_path()
                  */
                 'relative_path' => null,
-            ],
+
+                  /*
+         * If this is set to true the default the backup will be encrypted.
+         */
+                  'encrypt_back' => false,
+        /*
+         * Password for decrypting the backup.
+         */
+        'backup_password' => env("BACKUP_PASSWORD", "PASSWORD"),
+    ],
 
             /*
              * The names of the connections to the databases that should be backed up
