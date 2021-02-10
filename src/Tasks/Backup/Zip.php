@@ -113,8 +113,9 @@ class Zip
 
             if (is_file($file)) {
                 $this->zipFile->addFile($file, ltrim($nameInZip, DIRECTORY_SEPARATOR)).PHP_EOL;
-                if($config['backup']['encrypt_back']){
-                    $this->zipFile->setEncryptionName(ltrim($nameInZip, DIRECTORY_SEPARATOR), ZipArchive::EM_AES_256,$config['backup']['backup_password']);
+                if($config['backup']['source']['files']['encrypt_back']){
+                
+                    $this->zipFile->setEncryptionName(ltrim($nameInZip, DIRECTORY_SEPARATOR), ZipArchive::EM_AES_256,$config['backup']['source']['files']['backup_password']);
                 }
 
             }
